@@ -1,0 +1,9 @@
+* thread対応
+* Hand written parser(recursive decent)
+* クラスライブラリの見直し(UNIX依存を減らす)
+* format機能
+* here document
+* perlのようなsetuid check
+* write debugger for ruby
+* re-write regex code for speed
+* byte code interpretor
