@@ -346,22 +346,18 @@ rb_define_attr(class, id, pub)
     }
 }
 
-#include <varargs.h>
+#include <stdarg.h>
 #include <ctype.h>
 
 int
-rb_scan_args(argc, argv, fmt, va_alist)
-    int argc;
-    VALUE *argv;
-    char *fmt;
-    va_dcl
+rb_scan_args(int argc, VALUE *argv, char *fmt, ...)
 {
     int n, i;
     char *p = fmt;
     VALUE *var;
     va_list vargs;
 
-    va_start(vargs);
+    va_init_list(vargs, fmt);
 
     if (*p == '*') {
 	var = va_arg(vargs, VALUE*);

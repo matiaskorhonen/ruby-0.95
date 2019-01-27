@@ -360,7 +360,7 @@ dyna_var_asgn(id, value)
     }
     return value;
 }
-    
+
 static struct iter {
     int iter;
     struct iter *prev;
@@ -1484,7 +1484,7 @@ rb_eval(node)
 					   the_frame->last_func, 1);
 		}
 		break;
-		
+
 	      case NODE_FCALL:
 		obj = CLASS_OF(Qself);
 		goto check_bound;
@@ -2422,14 +2422,10 @@ f_send(argc, argv, recv)
     return rb_call(CLASS_OF(recv), recv, mid, argc, argv, 1);
 }
 
-#include <varargs.h>
+#include <stdarg.h>
 
 VALUE
-rb_funcall(recv, mid, n, va_alist)
-    VALUE recv;
-    ID mid;
-    int n;
-    va_dcl
+rb_funcall(VALUE recv, ID mid, int n, ...)
 {
     va_list ar;
     VALUE *argv;
@@ -2439,7 +2435,7 @@ rb_funcall(recv, mid, n, va_alist)
 
 	argv = ALLOCA_N(VALUE, n);
 
-	va_start(ar);
+	va_start(ar, n);
 	for (i=0;i<n;i++) {
 	    argv[i] = va_arg(ar, VALUE);
 	}

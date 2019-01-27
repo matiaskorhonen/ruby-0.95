@@ -46,7 +46,9 @@ struct timeval {
 char *strrchr();
 #endif
 
+#ifndef strdup
 char *strdup();
+#endif
 char *getenv();
 
 extern VALUE cIO;
@@ -1230,7 +1232,7 @@ file_s_expand_path(obj, fname)
 	    if (*(s+1)) {
 		switch (*++s) {
 		  case '.':
-		    if (*(s+1) == '\0' || *(s+1) == '/') { 
+		    if (*(s+1) == '\0' || *(s+1) == '/') {
 			/* We must go back to the parent */
 			if (*p == '/' && p > buf) p--;
 			while (p > buf && *p != '/') p--;
@@ -1241,7 +1243,7 @@ file_s_expand_path(obj, fname)
 		    }
 		    break;
 		  case '/':
-		    if (*p != '/') *++p = '/'; 
+		    if (*p != '/') *++p = '/';
 		    break;
 		  default:
 		    *++p = '.'; *++p = *s; break;
@@ -1254,7 +1256,7 @@ file_s_expand_path(obj, fname)
 	    *++p = *s;
 	}
     }
-  
+
     /* Place a \0 at end. If path ends with a "/", delete it */
     if (p == buf || *p != '/') p++;
     *p = '\0';
@@ -1563,6 +1565,6 @@ Init_File()
 
     sStat = struct_define("Stat", "dev", "ino", "mode",
 			  "nlink", "uid", "gid", "rdev",
-			  "size", "blksize", "blocks", 
+			  "size", "blksize", "blocks",
 			  "atime", "mtime", "ctime", Qnil);
 }

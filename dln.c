@@ -45,7 +45,9 @@ void *xrealloc();
 #  include <strings.h>
 #endif
 
+#ifndef strdup
 char *strdup();
+#endif
 
 char *getenv();
 
@@ -694,7 +696,7 @@ load_1(fd, disp, need_init)
 		}
 	    } /* end.. look it up */
 	    else { /* is static */
-		switch (R_SYMBOL(rel)) { 
+		switch (R_SYMBOL(rel)) {
 		  case N_TEXT:
 		  case N_DATA:
 		    datum = block;
@@ -1059,7 +1061,7 @@ aix_loaderror(char *pathname)
     char *message[8], errbuf[1024];
     int i,j;
 
-    struct errtab { 
+    struct errtab {
 	int errno;
 	char *errstr;
     } load_errtab[] = {
@@ -1082,7 +1084,7 @@ aix_loaderror(char *pathname)
 
     sprintf(errbuf, "load failed - %.200s ", pathname);
 
-    if (!loadquery(1, &message[0], sizeof(message))) 
+    if (!loadquery(1, &message[0], sizeof(message)))
 	ERRBUF_APPEND(strerror(errno));
     for(i = 0; message[i] && *message[i]; i++) {
 	int nerr = atoi(message[i]);
@@ -1090,7 +1092,7 @@ aix_loaderror(char *pathname)
 	    if (nerr == load_errtab[i].errno && load_errtab[i].errstr)
 		ERRBUF_APPEND(load_errtab[i].errstr);
 	}
-	while (isdigit(*message[i])) message[i]++ ; 
+	while (isdigit(*message[i])) message[i]++ ;
 	ERRBUF_APPEND(message[i]);
 	ERRBUF_APPEND("\n");
     }

@@ -60,6 +60,10 @@ typedef unsigned short USHORT;
 # endif
 #endif
 
+#define _(args) args
+#define __(args) args
+#define NORETURN __attribute__ ((noreturn))
+
 #define FIXNUM_MAX (LONG_MAX>>1)
 #define FIXNUM_MIN RSHIFT((long)LONG_MIN,1)
 
@@ -292,9 +296,9 @@ char *rb_class2name();
 VALUE rb_method_boundp();
 
 VALUE rb_eval_string();
-VALUE rb_funcall();
+VALUE rb_funcall __((VALUE, ID, int, ...));
 VALUE rb_funcall2();
-int rb_scan_args();
+int rb_scan_args __((int, VALUE*, char*, ...));
 
 VALUE rb_iv_get();
 VALUE rb_iv_set();
@@ -307,28 +311,16 @@ VALUE rb_equal();
 
 extern int verbose, debug;
 
-#ifdef __GNUC__
-typedef void voidfn ();
-volatile voidfn Fail;
-volatile voidfn Fatal;
-volatile voidfn Bug;
-volatile voidfn WrongType;
-volatile voidfn rb_sys_fail;
-volatile voidfn rb_break;
-volatile voidfn rb_exit;
-volatile voidfn rb_fail;
-#else
-void Fail();
-void Fatal();
-void Bug();
+void Fail _((char*, ...)) NORETURN;
+void Fatal _((char*, ...)) NORETURN;
+void Bug _((char*, ...)) NORETURN;
 void WrongType();
 void rb_sys_fail();
 void rb_break();
 void rb_exit();
 void rb_fail();
-#endif
 
-void Warning();
+void Warning _((char*, ...)) NORETURN;
 
 #if defined(EXTLIB) && defined(USE_DLN_A_OUT)
 /* hook for external modules */
