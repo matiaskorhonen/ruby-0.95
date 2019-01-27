@@ -14,6 +14,13 @@
 #include "env.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <errno.h>
+
+#if !defined (__GNU_LIBRARY__) && !defined (STDC_HEADERS)
+#  if !defined (errno)
+extern int errno;
+#  endif /* !errno */
+#endif
 
 extern char *sourcefile;
 extern int   sourceline;

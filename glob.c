@@ -21,6 +21,7 @@
 
 #include "config.h"
 
+#include <stdio.h>
 #include <sys/types.h>
 
 #if !defined (SHELL) && (defined (_POSIX_VERSION) || defined (USGr3))
@@ -70,10 +71,8 @@
 
 # define bcopy(s, d, n) (memcpy ((d), (s), (n)))
 
-#if defined(HAVE_ALLOCA_H) && !defined(__GNUC__)
-#include <alloca.h>
-#else
-char *alloca ();
+#if defined (HAVE_ALLOCA_H)
+#  include <alloca.h>
 #endif
 
 #include "fnmatch.h"
@@ -136,7 +135,7 @@ glob_pattern_p (pattern)
       case ']':
 	if (open)
 	  return (1);
-	continue;      
+	continue;
 
       case '\\':
 	if (*p++ == '\0')
@@ -256,7 +255,7 @@ glob_vector (pat, dir)
 	  goto lost;
 	}
 #endif /* SHELL */
-	  
+
       dp = readdir (d);
       if (dp == NULL)
 	break;

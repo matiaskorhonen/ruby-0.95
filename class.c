@@ -357,7 +357,7 @@ rb_scan_args(int argc, VALUE *argv, char *fmt, ...)
     VALUE *var;
     va_list vargs;
 
-    va_init_list(vargs, fmt);
+    va_start(vargs, fmt);
 
     if (*p == '*') {
 	var = va_arg(vargs, VALUE*);
