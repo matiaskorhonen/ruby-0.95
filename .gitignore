@@ -50,3 +50,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+*.log
+/config.cache
+/config.h
+/config.status
+/ext/extmk.rb
+/Makefile
+/miniruby
+/ruby
