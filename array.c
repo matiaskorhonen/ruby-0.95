@@ -281,8 +281,8 @@ beg_len(range, begp, lenp, len)
 	    end = len + end;
 	    if (end < 0) end = 0;
 	}
-	if (len < end) end = len;
-	if (beg < end) {
+	if (end > len) end = len;
+	if (beg > end) {
 	    *lenp = 0;
 	}
 	else {
