@@ -79,3 +79,8 @@ docker run ruby95 sample/dir.rb
 - It segfaults if you look at it wrong
 - Many things that you might be used to don't exist (e.g. `puts` or anything HTTP related)
 - None of the extensions from `ext/` are included because I could get the setup script to stop segfaulting
+
+## Help wanted
+
+- **Segfaults:** pull requests or tips about fixing the segfaults would be highly appreciated
+- **Autoconf:** updating the autoconf setup would probably make it a fair bit easier to try out Ruby 0.95. Again, pull requests would be welcomed…
