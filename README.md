@@ -60,6 +60,20 @@ make install
 echo 'print "Hello from Ruby 0.95\n"' | $HOME/opt/bin/ruby
 ```
 
+## Docker support
+
+There's rudimentary Docker support.
+
+```sh
+docker build --tag=ruby95 .
+
+# Run a Ruby 0.95 program from STDIN
+echo "print 'Hello world\n'" | docker run --interactive ruby95
+
+# Run one of the samples included in the Docker image
+docker run ruby95 sample/dir.rb
+```
+
 ## Caveats
 
 - It segfaults if you look at it wrong
