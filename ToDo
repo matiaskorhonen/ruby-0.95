@@ -1,9 +1,9 @@
-* threadÂĞ±ş
+* threadå¯¾å¿œ
 * Hand written parser(recursive decent)
-* ¥¯¥é¥¹¥é¥¤¥Ö¥é¥ê¤Î¸«Ä¾¤·(UNIX°ÍÂ¸¤ò¸º¤é¤¹)
-* formatµ¡Ç½
+* ã‚¯ãƒ©ã‚¹ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®è¦‹ç›´ã—(UNIXä¾å­˜ã‚’æ¸›ã‚‰ã™)
+* formatæ©Ÿèƒ½
 * here document
-* perl¤Î¤è¤¦¤Êsetuid check
+* perlã®ã‚ˆã†ãªsetuid check
 * write debugger for ruby
 * re-write regex code for speed
 * byte code interpretor
